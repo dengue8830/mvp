@@ -8,20 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListaLineasPedidoAdapter;
 import com.amla.examen2.model.service.ArticuloService;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.LineaPedido;
+import com.amla.examen2.presenter.NuevoPedidoPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NuevoPedidoFragment extends Fragment {
-    private List<LineaPedido> mLineasPedido;
-    private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
+    private NuevoPedidoPresenter mPresenter;
 
     public NuevoPedidoFragment() {
         // Required empty public constructor
@@ -35,41 +36,44 @@ public class NuevoPedidoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPresenter = new NuevoPedidoPresenter(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nuevo_pedido, container, false);
 
-        mLineasPedido = new ArrayList<>();
-        mLineasPedido.add(new LineaPedido());
-        mAdapter = new ListaLineasPedidoAdapter(mLineasPedido, ArticuloService.getArticulos(), view.getContext());
+        mAdapter = new ListaLineasPedidoAdapter(mPresenter.getLineasPedido(), mPresenter.getArticulos(), view.getContext());
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.lista_lineas_pedido);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.lista_lineas_pedido);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(mAdapter);
 
-        Button btnNuevaLineaPedido = (Button) view.findViewById(R.id.btnNuevaLineaPedido);
-        btnNuevaLineaPedido.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btnNuevaLineaPedido).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mLineasPedido.add(new LineaPedido());
-                mAdapter.notifyDataSetChanged();
+                mPresenter.addLineaPedido();
             }
         });
-        Button btnGuardarPedido = (Button) view.findViewById(R.id.btnGuardarPedido);
-        btnGuardarPedido.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btnGuardarPedido).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PedidoService.addPedido(mLineasPedido);
+                mPresenter.addPedido();
             }
         });
+
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void updateListado(){
+        mAdapter.notifyDataSetChanged();
     }
 
+    public void errorAlGuardarPedido() {
+        Toast.makeText(getContext(), "Error al guardar el pedido", Toast.LENGTH_LONG).show();
+    }
+
+    public void pedidoGuardado() {
+        Toast.makeText(getContext(), "Listo!", Toast.LENGTH_LONG).show();
+    }
 }

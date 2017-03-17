@@ -24,8 +24,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_listadopedidos_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_listadopedidos_item, parent, false);
         return new ViewHolder(view);
     }
 
