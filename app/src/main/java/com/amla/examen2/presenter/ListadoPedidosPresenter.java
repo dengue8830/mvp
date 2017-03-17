@@ -1,5 +1,6 @@
 package com.amla.examen2.presenter;
 
+import com.amla.examen2.dto.DatePickerDTO;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.Pedido;
 import com.amla.examen2.views.fragments.ListadoPedidosFragment;
@@ -59,6 +60,7 @@ public class ListadoPedidosPresenter implements DatePickerDialogFragment.DatePic
 
     public void filtroFechaSeleccionado() {
         Calendar hoy = Calendar.getInstance();
-        mView.abrirDialogFecha(hoy.get(Calendar.DAY_OF_MONTH), hoy.get(Calendar.MONTH), hoy.get(Calendar.YEAR));
+        DatePickerDTO dto = new DatePickerDTO(hoy.get(Calendar.DAY_OF_MONTH), hoy.get(Calendar.MONTH), hoy.get(Calendar.YEAR));
+        mView.abrirDialogFecha(dto);
     }
 }

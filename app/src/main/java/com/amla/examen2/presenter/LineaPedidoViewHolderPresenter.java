@@ -1,6 +1,5 @@
 package com.amla.examen2.presenter;
 
-import com.amla.examen2.adapters.ListaLineasPedidoAdapter;
 import com.amla.examen2.model.service.ArticuloService;
 import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.LineaPedido;
