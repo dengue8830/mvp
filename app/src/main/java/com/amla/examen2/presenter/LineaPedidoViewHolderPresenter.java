@@ -4,15 +4,16 @@ import com.amla.examen2.adapters.ListaLineasPedidoAdapter;
 import com.amla.examen2.model.service.ArticuloService;
 import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.LineaPedido;
+import com.amla.examen2.views.viewholder.LineaPedidoViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LineaPedidoViewHolderPresenter {
-    private ListaLineasPedidoAdapter.ViewHolder mViewHolder;
+    private LineaPedidoViewHolder mViewHolder;
     private LineaPedido mLineaPedido;
 
-    public LineaPedidoViewHolderPresenter(ListaLineasPedidoAdapter.ViewHolder viewHolder){
+    public LineaPedidoViewHolderPresenter(LineaPedidoViewHolder viewHolder){
         mViewHolder = viewHolder;
     }
 

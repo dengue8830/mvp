@@ -15,11 +15,9 @@ import java.util.List;
 public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAdapter.ViewHolder> {
 
     private final List<Pedido> mPedidos;
-    private final ListadoPedidosFragment.OnListFragmentInteractionListener mListener;
 
-    public ListadoPedidosAdapter(List<Pedido> pedidos, ListadoPedidosFragment.OnListFragmentInteractionListener listener) {
+    public ListadoPedidosAdapter(List<Pedido> pedidos) {
         mPedidos = pedidos;
-        mListener = listener;
     }
 
     @Override
@@ -33,17 +31,6 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         holder.mPedido = mPedidos.get(position);
         holder.mCantidadLineasPedido.setText(mPedidos.get(position).getLineasPedido().size()+"");
         holder.mSubtotal.setText(mPedidos.get(position).getTotal()+"");
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mPedido);
-                }
-            }
-        });
     }
 
     @Override
