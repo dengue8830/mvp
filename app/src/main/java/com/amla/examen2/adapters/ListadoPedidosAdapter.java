@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.amla.examen2.R;
-import com.amla.examen2.fragments.ListadoPedidosFragment;
-import com.amla.examen2.vo.Pedido;
+import com.amla.examen2.views.fragments.ListadoPedidosFragment;
+import com.amla.examen2.model.vo.Pedido;
 
 import java.util.List;
 

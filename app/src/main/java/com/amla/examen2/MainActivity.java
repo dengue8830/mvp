@@ -8,10 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.amla.examen2.fragments.ListadoPedidosFragment;
-import com.amla.examen2.fragments.NuevoArticuloFragment;
-import com.amla.examen2.fragments.NuevoPedidoFragment;
-import com.amla.examen2.vo.Pedido;
+import com.amla.examen2.views.fragments.ListadoPedidosFragment;
+import com.amla.examen2.views.fragments.NuevoArticuloFragment;
+import com.amla.examen2.views.fragments.NuevoPedidoFragment;
+import com.amla.examen2.model.vo.Pedido;
 
 public class MainActivity extends AppCompatActivity implements ListadoPedidosFragment.OnListFragmentInteractionListener{
 

@@ -1,4 +1,4 @@
-package com.amla.examen2.fragments;
+package com.amla.examen2.views.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +11,9 @@ import android.widget.Button;
 
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListaLineasPedidoAdapter;
-import com.amla.examen2.service.ArticuloService;
-import com.amla.examen2.service.PedidoService;
-import com.amla.examen2.vo.LineaPedido;
+import com.amla.examen2.model.service.ArticuloService;
+import com.amla.examen2.model.service.PedidoService;
+import com.amla.examen2.model.vo.LineaPedido;
 
 import java.util.ArrayList;
 import java.util.List;

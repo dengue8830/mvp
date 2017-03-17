@@ -1,7 +1,7 @@
-package com.amla.examen2.service;
+package com.amla.examen2.model.service;
 
-import com.amla.examen2.vo.LineaPedido;
-import com.amla.examen2.vo.Pedido;
+import com.amla.examen2.model.vo.LineaPedido;
+import com.amla.examen2.model.vo.Pedido;
 
 import java.util.ArrayList;
 import java.util.List;

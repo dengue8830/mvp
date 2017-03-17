@@ -1,8 +1,6 @@
-package com.amla.examen2.service;
+package com.amla.examen2.model.service;
 
-import android.text.Editable;
-
-import com.amla.examen2.vo.Articulo;
+import com.amla.examen2.model.vo.Articulo;
 
 import java.util.ArrayList;
 import java.util.List;

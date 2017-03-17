@@ -1,4 +1,4 @@
-package com.amla.examen2.fragments;
+package com.amla.examen2.views.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListadoPedidosAdapter;
-import com.amla.examen2.service.PedidoService;
-import com.amla.examen2.vo.Pedido;
+import com.amla.examen2.model.service.PedidoService;
+import com.amla.examen2.model.vo.Pedido;
+import com.amla.examen2.presenter.ListadoPedidosPresenter;
 
 public class ListadoPedidosFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
+    private ListadoPedidosPresenter presenter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -26,19 +28,17 @@ public class ListadoPedidosFragment extends Fragment {
 
     public static ListadoPedidosFragment newInstance() {
         ListadoPedidosFragment fragment = new ListadoPedidosFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = new ListadoPedidosPresenter();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_listadopedidos_list, container, false);
 
         Context context = view.getContext();
@@ -81,4 +81,8 @@ public class ListadoPedidosFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Pedido item);
     }
+
+//    public interface ListadoPedidosPresenter {
+//        List<Pedido> getPedidos();
+//    }
 }

@@ -1,4 +1,4 @@
-package com.amla.examen2.vo;
+package com.amla.examen2.model.vo;
 
 /**
  * Created by dengue8830 on 3/16/17.

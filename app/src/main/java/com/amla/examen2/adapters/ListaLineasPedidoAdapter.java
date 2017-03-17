@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Spinner;
 
 import com.amla.examen2.R;
-import com.amla.examen2.vo.Articulo;
-import com.amla.examen2.vo.LineaPedido;
+import com.amla.examen2.model.vo.Articulo;
+import com.amla.examen2.model.vo.LineaPedido;
 
 import java.util.ArrayList;
 import java.util.List;

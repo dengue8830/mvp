@@ -1,4 +1,4 @@
-package com.amla.examen2.vo;
+package com.amla.examen2.model.vo;
 
 import java.util.List;
 
