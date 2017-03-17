@@ -11,6 +11,7 @@ import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.LineaPedido;
 import com.amla.examen2.views.viewholder.LineaPedidoViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListaLineasPedidoAdapter extends RecyclerView.Adapter<LineaPedidoViewHolder>  {
@@ -20,7 +21,11 @@ public class ListaLineasPedidoAdapter extends RecyclerView.Adapter<LineaPedidoVi
     private final Context mContext;
 
     public ListaLineasPedidoAdapter(List<LineaPedido> lineasPedido, List<Articulo> articulos, Context context) {
-        mLineasPedido = lineasPedido;
+//        mLineasPedido = lineasPedido;
+        mLineasPedido = new ArrayList<>();
+        for (LineaPedido lineaPedido : lineasPedido) {
+            mLineasPedido.add(lineaPedido);
+        }
         mArticulos = articulos;
         mContext = context;
     }
@@ -39,5 +44,11 @@ public class ListaLineasPedidoAdapter extends RecyclerView.Adapter<LineaPedidoVi
     @Override
     public int getItemCount() {
         return mLineasPedido.size();
+    }
+
+    public void clear(List<LineaPedido> lineasPedido){
+        mLineasPedido.clear();
+//        mLineasPedido.addAll(lineasPedido);
+        this.notifyDataSetChanged();
     }
 }

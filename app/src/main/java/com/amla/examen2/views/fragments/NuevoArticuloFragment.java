@@ -42,7 +42,7 @@ public class NuevoArticuloFragment extends Fragment {
         view.findViewById(R.id.btnGuardarArticulo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.crearArticulo(etNombre.getText().toString(), Double.parseDouble(etPrecio.getText().toString()));
+                mPresenter.crearArticulo(etNombre.getText().toString(), etPrecio.getText().toString());
             }
         });
 
@@ -60,7 +60,7 @@ public class NuevoArticuloFragment extends Fragment {
     }
 
     public void mostrarErrorNombreVacio() {
-        Toast.makeText(getContext(), "El nombre no puede estar vacío", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Ingresa un nombre", Toast.LENGTH_LONG).show();
     }
 
     public void mostrarErrorPrecioCero() {
@@ -69,5 +69,13 @@ public class NuevoArticuloFragment extends Fragment {
 
     public void mostrarErrorPrecioNegativo() {
         Toast.makeText(getContext(), "El precio no puede ser negativo", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorPrecioVacio() {
+        Toast.makeText(getContext(), "Ingresa un precio", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorPrecioInvalido() {
+        Toast.makeText(getContext(), "Ingresa un precio válido", Toast.LENGTH_LONG).show();
     }
 }

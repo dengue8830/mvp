@@ -7,21 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListaLineasPedidoAdapter;
-import com.amla.examen2.model.service.ArticuloService;
-import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.LineaPedido;
 import com.amla.examen2.presenter.NuevoPedidoPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NuevoPedidoFragment extends Fragment {
-    private RecyclerView.Adapter mAdapter;
+    private ListaLineasPedidoAdapter mAdapter;
     private NuevoPedidoPresenter mPresenter;
 
     public NuevoPedidoFragment() {
@@ -83,5 +79,9 @@ public class NuevoPedidoFragment extends Fragment {
 
     public void mostrarErrorCantidadDebeSerMayorAcero() {
         Toast.makeText(getContext(), "Las cantidades deben ser mayor a cero", Toast.LENGTH_LONG).show();
+    }
+
+    public void clearListado(List<LineaPedido> lineasPedido) {
+        mAdapter.clear(lineasPedido);
     }
 }

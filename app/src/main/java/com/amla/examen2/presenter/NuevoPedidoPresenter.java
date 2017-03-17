@@ -16,6 +16,10 @@ public class NuevoPedidoPresenter {
 
     public NuevoPedidoPresenter(NuevoPedidoFragment view) {
         mView = view;
+        inicializarLineasPedido();
+    }
+
+    private void inicializarLineasPedido(){
         mLineasPedido = new ArrayList<>();
         mLineasPedido.add(new LineaPedido());
     }
@@ -48,9 +52,10 @@ public class NuevoPedidoPresenter {
             mView.errorAlGuardarPedido();
         }
 
+        inicializarLineasPedido();
+        mView.clearListado(getLineasPedido());
+
         mView.pedidoGuardado();
-        mLineasPedido.clear();
-        mView.updateListado();
     }
 
     public List<LineaPedido> getLineasPedido(){

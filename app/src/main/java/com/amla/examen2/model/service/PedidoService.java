@@ -42,16 +42,13 @@ public class PedidoService {
     }
 
     private static boolean sonDelMismoDia(Calendar fecha1, Calendar fecha2) {
-        int a = fecha1.get(Calendar.DAY_OF_MONTH);
-        int b= fecha2.get(Calendar.DAY_OF_MONTH);
-        int c = fecha1.get(Calendar.MONTH);
-        int d = fecha2.get(Calendar.MONTH);
-        int e = fecha1.get(Calendar.YEAR);
-        int f = fecha2.get(Calendar.YEAR);
         return fecha1.get(Calendar.DAY_OF_MONTH) == fecha2.get(Calendar.DAY_OF_MONTH) && fecha1.get(Calendar.MONTH) == fecha2.get(Calendar.MONTH) && fecha1.get(Calendar.YEAR) == fecha2.get(Calendar.YEAR);
     }
 
     public static void addPedido(List<LineaPedido> lineasPedido) {
-        pedidos.add(new Pedido(pedidos.size()+1, lineasPedido));
+        Pedido ped= new Pedido(pedidos.size()+1, lineasPedido);
+        pedidos.add(ped);
+        int a = 1;
+        int b = a+1;
     }
 }

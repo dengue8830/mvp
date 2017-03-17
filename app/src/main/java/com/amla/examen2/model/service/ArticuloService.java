@@ -22,7 +22,7 @@ public class ArticuloService {
         return articulos;
     }
 
-    public static void addArticulo(String nombre, Double precio) {
+    public static void addArticulo(String nombre, double precio) {
         articulos.add(new Articulo(articulos.size()+1, nombre, precio));
     }
 }

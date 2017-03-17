@@ -10,19 +10,33 @@ public class NuevoArticuloPresenter {
         mView = view;
     }
 
-    public void crearArticulo(String nombre, Double precio){
-        if(nombre == null || nombre.isEmpty()){
-            mView.mostrarErrorNombreVacio();
+    public void crearArticulo(String nombre, String stringPrecio){
+        if(stringPrecio == null || stringPrecio.isEmpty()){
+            mView.mostrarErrorPrecioVacio();
             return;
         }
 
-        if(precio == null || precio.equals(0d)){
+        double precio;
+
+        try {
+            precio = Double.parseDouble(stringPrecio.toString());
+        } catch (Exception e) {
+            mView.mostrarErrorPrecioInvalido();
+            return;
+        }
+
+        if(precio == 0d){
             mView.mostrarErrorPrecioCero();
             return;
         }
 
-        if(precio == null || precio.compareTo(0d) < 0){
+        if(precio < 0d){
             mView.mostrarErrorPrecioNegativo();
+            return;
+        }
+
+        if(nombre == null || nombre.isEmpty()){
+            mView.mostrarErrorNombreVacio();
             return;
         }
 
