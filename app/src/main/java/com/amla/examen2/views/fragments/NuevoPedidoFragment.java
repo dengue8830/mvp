@@ -76,4 +76,12 @@ public class NuevoPedidoFragment extends Fragment {
     public void pedidoGuardado() {
         Toast.makeText(getContext(), "Listo!", Toast.LENGTH_LONG).show();
     }
+
+    public void mostrarErrorSinArticulo() {
+        Toast.makeText(getContext(), "Todas las lineas de pedido deben tener articulo", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorCantidadDebeSerMayorAcero() {
+        Toast.makeText(getContext(), "Las cantidades deben ser mayor a cero", Toast.LENGTH_LONG).show();
+    }
 }

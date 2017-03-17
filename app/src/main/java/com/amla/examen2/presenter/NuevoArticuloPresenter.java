@@ -11,6 +11,21 @@ public class NuevoArticuloPresenter {
     }
 
     public void crearArticulo(String nombre, Double precio){
+        if(nombre == null || nombre.isEmpty()){
+            mView.mostrarErrorNombreVacio();
+            return;
+        }
+
+        if(precio == null || precio.equals(0d)){
+            mView.mostrarErrorPrecioCero();
+            return;
+        }
+
+        if(precio == null || precio.compareTo(0d) < 0){
+            mView.mostrarErrorPrecioNegativo();
+            return;
+        }
+
         try {
             ArticuloService.addArticulo(nombre, precio);
         } catch (Exception e) {

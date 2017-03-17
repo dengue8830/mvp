@@ -30,6 +30,18 @@ public class NuevoPedidoPresenter {
     }
 
     public void addPedido() {
+        for (LineaPedido lineaPedido : mLineasPedido) {
+            if(lineaPedido.getArticulo() == null){
+                mView.mostrarErrorSinArticulo();
+                return;
+            }
+
+            if(lineaPedido.getCantidad() == 0) {
+                mView.mostrarErrorCantidadDebeSerMayorAcero();
+                return;
+            }
+
+        }
         try {
             PedidoService.addPedido(mLineasPedido);
         } catch (Exception e) {
@@ -37,6 +49,8 @@ public class NuevoPedidoPresenter {
         }
 
         mView.pedidoGuardado();
+        mLineasPedido.clear();
+        mView.updateListado();
     }
 
     public List<LineaPedido> getLineasPedido(){

@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:name="com.amla.examen.fragments.ListadoPedidosFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context="com.amla.examen.fragments.ListadoPedidosFragment"
-    tools:listitem="@layout/fragment_listadopedidos_item" />
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_filtros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha:"
+            android:textSize="19sp"
+            android:layout_margin="15dp"/>
+        <TextView
+            android:id="@+id/filtroFecha"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.75"
+            android:ems="10"
+            android:textSize="19sp"
+            android:text="Todos"
+            android:gravity="end"
+            android:layout_margin="15dp"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listaPedidos"
+        android:name="com.amla.examen.fragments.ListadoPedidosFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="com.amla.examen.fragments.ListadoPedidosFragment"
+        tools:listitem="@layout/fragment_listadopedidos_item"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/ll_filtros"/>
+</RelativeLayout>

@@ -58,4 +58,16 @@ public class NuevoArticuloFragment extends Fragment {
         etNombre.setText("");
         etPrecio.setText("");
     }
+
+    public void mostrarErrorNombreVacio() {
+        Toast.makeText(getContext(), "El nombre no puede estar vacío", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorPrecioCero() {
+        Toast.makeText(getContext(), "No puede ser gratis", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorPrecioNegativo() {
+        Toast.makeText(getContext(), "El precio no puede ser negativo", Toast.LENGTH_LONG).show();
+    }
 }
