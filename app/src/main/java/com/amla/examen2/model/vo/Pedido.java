@@ -6,13 +6,15 @@ public class Pedido {
     private int id;
     private Calendar fecha;
     private Articulo articulo;
+    private Cliente cliente;
     private int cantidad;
 
-    public Pedido(int id, Articulo articulo, int cantidad) {
+    public Pedido(int id, Articulo articulo, Cliente cliente, int cantidad) {
         this.id = id;
         this.articulo = articulo;
         this.fecha = Calendar.getInstance();
         this.cantidad = cantidad;
+        this.cliente = cliente;
     }
 
     public int getId() {
@@ -49,5 +51,9 @@ public class Pedido {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Cliente getCliente(){
+        return this.cliente;
     }
 }

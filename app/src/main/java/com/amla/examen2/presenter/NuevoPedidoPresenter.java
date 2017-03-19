@@ -1,8 +1,10 @@
 package com.amla.examen2.presenter;
 
 import com.amla.examen2.model.service.ArticuloService;
+import com.amla.examen2.model.service.ClienteService;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.Articulo;
+import com.amla.examen2.model.vo.Cliente;
 import com.amla.examen2.views.fragments.NuevoPedidoFragment;
 
 import java.util.ArrayList;
@@ -13,18 +15,20 @@ public class NuevoPedidoPresenter {
     private NuevoPedidoFragment mView;
     private Articulo articulo;
     private int cantidad;
+    private Cliente cliente;
 
     public NuevoPedidoPresenter(NuevoPedidoFragment view) {
         mView = view;
     }
 
-    public List<Articulo> getArticulos() {
-        return  ArticuloService.getArticulos();
-    }
-
     public void addPedido() {
         if(articulo == null){
             mView.mostrarErrorSinArticulo();
+            return;
+        }
+
+        if(cliente == null){
+            mView.mostrarErrorSinCliente();
             return;
         }
 
@@ -34,12 +38,15 @@ public class NuevoPedidoPresenter {
         }
 
         try {
-            PedidoService.addPedido(articulo, cantidad);
+            PedidoService.addPedido(articulo, cliente, cantidad);
         } catch (Exception e) {
             mView.errorAlGuardarPedido();
+            return;
         }
 
+        cantidad = 0;
         mView.pedidoGuardado();
+        mView.setCantidad(cantidad);
     }
 
     public void setArticulo(int posicionArticulo) {
@@ -50,7 +57,7 @@ public class NuevoPedidoPresenter {
         try{
             this.cantidad = Integer.parseInt(cantidad.toString());
         } catch (Exception e) {
-            mView.mostrarErrorCantidadDebeSerMayorAcero();
+            mView.mostrarErrorIngresarCantidad();
         }
     }
 
@@ -62,5 +69,19 @@ public class NuevoPedidoPresenter {
         }
 
         return nombresArticulos;
+    }
+
+    public List<String> getNombresClientes() {
+        List<String> nombresClientes = new ArrayList<>();
+
+        for (Cliente cliente : ClienteService.getClientes()){
+            nombresClientes.add(cliente.getNombre());
+        }
+
+        return nombresClientes;
+    }
+
+    public void setCliente(int posicionCliente) {
+        this.cliente = ClienteService.getClientes().get(posicionCliente);
     }
 }

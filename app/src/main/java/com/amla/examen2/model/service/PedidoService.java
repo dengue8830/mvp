@@ -1,6 +1,7 @@
 package com.amla.examen2.model.service;
 
 import com.amla.examen2.model.vo.Articulo;
+import com.amla.examen2.model.vo.Cliente;
 import com.amla.examen2.model.vo.Pedido;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class PedidoService {
     private static List<Pedido> pedidos = new ArrayList<>();
 
     static {
-        pedidos.add(new Pedido(pedidos.size()+1, ArticuloService.getArticulos().get(0), 2));
+        pedidos.add(new Pedido(pedidos.size()+1, ArticuloService.getArticulos().get(0), ClienteService.getClientes().get(0), 2));
     }
 
     public static List<Pedido> getPedidos(){
@@ -36,7 +37,7 @@ public class PedidoService {
         return fecha1.get(Calendar.DAY_OF_MONTH) == fecha2.get(Calendar.DAY_OF_MONTH) && fecha1.get(Calendar.MONTH) == fecha2.get(Calendar.MONTH) && fecha1.get(Calendar.YEAR) == fecha2.get(Calendar.YEAR);
     }
 
-    public static void addPedido(Articulo articulo, int cantidad) {
-        pedidos.add(new Pedido(pedidos.size()+1, articulo, cantidad));
+    public static void addPedido(Articulo articulo, Cliente cliente, int cantidad) {
+        pedidos.add(new Pedido(pedidos.size()+1, articulo, cliente, cantidad));
     }
 }

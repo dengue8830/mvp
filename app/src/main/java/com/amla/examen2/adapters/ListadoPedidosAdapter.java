@@ -31,7 +31,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mPedido = mPedidos.get(position);
         holder.mTotal.setText(holder.mPedido.getTotal()+"");
-        holder.mCliente.setText("david");
+        holder.mCliente.setText(holder.mPedido.getCliente().getNombre());
     }
 
     @Override

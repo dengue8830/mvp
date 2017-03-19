@@ -16,13 +16,11 @@ import android.widget.Toast;
 import com.amla.examen2.R;
 import com.amla.examen2.presenter.NuevoPedidoPresenter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NuevoPedidoFragment extends Fragment {
     private NuevoPedidoPresenter mPresenter;
     private Spinner mArticulo;
     private TextView mCantidad;
+    private Spinner mClientes;
 
     public NuevoPedidoFragment() {
         // Required empty public constructor
@@ -43,11 +41,9 @@ public class NuevoPedidoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nuevo_pedido, container, false);
 
-        mArticulo = (Spinner) view.findViewById(R.id.spinner);
-
-        mCantidad = (TextView) view.findViewById(R.id.cantidad);
+        mArticulo = (Spinner) view.findViewById(R.id.spinnerArticulo);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.radiotul_simple_spinner_item, mPresenter.getNombresArticulos());
-        adapter.setDropDownViewResource(R.layout.layout_radiotul_spinner_dropdown_primary_item);//android.R.layout.simple_spinner_dropdown_item
+        adapter.setDropDownViewResource(R.layout.layout_radiotul_spinner_dropdown_primary_item);
         mArticulo.setAdapter(adapter);
         mArticulo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -59,6 +55,23 @@ public class NuevoPedidoFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        mClientes = (Spinner) view.findViewById(R.id.spinnerCliente);
+        ArrayAdapter<String> adapterClientes = new ArrayAdapter<>(getContext(), R.layout.radiotul_simple_spinner_item, mPresenter.getNombresClientes());
+        adapterClientes.setDropDownViewResource(R.layout.layout_radiotul_spinner_dropdown_primary_item);
+        mClientes.setAdapter(adapterClientes);
+        mClientes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mPresenter.setCliente(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        mCantidad = (TextView) view.findViewById(R.id.cantidad);
         mCantidad.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -84,6 +97,9 @@ public class NuevoPedidoFragment extends Fragment {
         return view;
     }
 
+    public void setCantidad(int cantidad){
+        mCantidad.setText(cantidad == 0 ? "" : cantidad+"");
+    }
 
     public void errorAlGuardarPedido() {
         Toast.makeText(getContext(), "Error al guardar el pedido", Toast.LENGTH_LONG).show();
@@ -99,5 +115,13 @@ public class NuevoPedidoFragment extends Fragment {
 
     public void mostrarErrorCantidadDebeSerMayorAcero() {
         Toast.makeText(getContext(), "Las cantidades deben ser mayor a cero", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorIngresarCantidad() {
+        Toast.makeText(getContext(), "Debes ingresar una cantidad", Toast.LENGTH_LONG).show();
+    }
+
+    public void mostrarErrorSinCliente() {
+        Toast.makeText(getContext(), "Debes elegir un cliente", Toast.LENGTH_LONG).show();
     }
 }
