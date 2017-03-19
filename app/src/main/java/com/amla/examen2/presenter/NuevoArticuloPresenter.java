@@ -16,6 +16,13 @@ public class NuevoArticuloPresenter {
             return;
         }
 
+        String[] split = stringPrecio.split("\\.");
+
+        if(split.length == 2 && split[1].length() > 2){
+            mView.mostrarErrorSoloDosDecimales();
+            return;
+        }
+
         double precio;
 
         try {

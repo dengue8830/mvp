@@ -42,55 +42,21 @@ public class NuevoPedidoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nuevo_pedido, container, false);
 
         mArticulo = (Spinner) view.findViewById(R.id.spinnerArticulo);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.radiotul_simple_spinner_item, mPresenter.getNombresArticulos());
-        adapter.setDropDownViewResource(R.layout.layout_radiotul_spinner_dropdown_primary_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, mPresenter.getNombresArticulos());
+        adapter.setDropDownViewResource(R.layout.layout_spinner_dropdown_primary_item);
         mArticulo.setAdapter(adapter);
-        mArticulo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mPresenter.setArticulo(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
         mClientes = (Spinner) view.findViewById(R.id.spinnerCliente);
-        ArrayAdapter<String> adapterClientes = new ArrayAdapter<>(getContext(), R.layout.radiotul_simple_spinner_item, mPresenter.getNombresClientes());
-        adapterClientes.setDropDownViewResource(R.layout.layout_radiotul_spinner_dropdown_primary_item);
+        ArrayAdapter<String> adapterClientes = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, mPresenter.getNombresClientes());
+        adapterClientes.setDropDownViewResource(R.layout.layout_spinner_dropdown_primary_item);
         mClientes.setAdapter(adapterClientes);
-        mClientes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mPresenter.setCliente(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
         mCantidad = (TextView) view.findViewById(R.id.cantidad);
-        mCantidad.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mPresenter.setCantidad(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
 
         view.findViewById(R.id.btnGuardarPedido).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.addPedido();
+                mPresenter.addPedido(mClientes.getSelectedItemPosition(), mArticulo.getSelectedItemPosition(), mCantidad.getText().toString());
             }
         });
 

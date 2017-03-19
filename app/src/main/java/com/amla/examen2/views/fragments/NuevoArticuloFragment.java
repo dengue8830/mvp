@@ -78,4 +78,8 @@ public class NuevoArticuloFragment extends Fragment {
     public void mostrarErrorPrecioInvalido() {
         Toast.makeText(getContext(), "Ingresa un precio válido", Toast.LENGTH_LONG).show();
     }
+
+    public void mostrarErrorSoloDosDecimales() {
+        Toast.makeText(getContext(), "El precio no puede tener más de dos decimales", Toast.LENGTH_LONG).show();
+    }
 }

@@ -30,8 +30,10 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mPedido = mPedidos.get(position);
-        holder.mTotal.setText(holder.mPedido.getTotal()+"");
+        //TODO: Un presentador deberia formatear el texto y darselo
         holder.mCliente.setText(holder.mPedido.getCliente().getNombre());
+        holder.mTotal.setText(" total: $"+holder.mPedido.getTotal());
+        holder.mDetallePedido.setText(holder.mPedido.getCantidad()+" x "+holder.mPedido.getArticulo().getNombre() + " ( c/u $"+holder.mPedido.getArticulo().getPrecio()+")");
     }
 
     @Override
@@ -39,10 +41,12 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         return mPedidos.size();
     }
 
+    // TODO: debe encapsular los atributos...
     class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
         final TextView mTotal;
         final TextView mCliente;
+        final TextView mDetallePedido;
         Pedido mPedido;
 
         ViewHolder(View view) {
@@ -50,6 +54,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
             mView = view;
             mTotal = (TextView) view.findViewById(R.id.total);
             mCliente = (TextView) view.findViewById(R.id.cliente);
+            mDetallePedido = (TextView) view.findViewById(R.id.detalle_pedido);
         }
     }
 }

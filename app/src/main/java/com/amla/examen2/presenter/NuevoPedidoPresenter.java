@@ -21,7 +21,28 @@ public class NuevoPedidoPresenter {
         mView = view;
     }
 
-    public void addPedido() {
+    public void addPedido(int posicionClienteSelecionado, int posicionArticuloSeleccionado, String stringCantidad) {
+        try{
+            this.cantidad = Integer.parseInt(stringCantidad);
+        } catch (Exception e) {
+            mView.mostrarErrorIngresarCantidad();
+            return;
+        }
+
+        try{
+            cliente = ClienteService.getClientes().get(posicionClienteSelecionado);
+        } catch (IndexOutOfBoundsException e) {
+            mView.mostrarErrorSinCliente();
+            return;
+        }
+
+        try{
+            articulo = ArticuloService.getArticulos().get(posicionArticuloSeleccionado);
+        } catch (IndexOutOfBoundsException e) {
+            mView.mostrarErrorSinArticulo();
+            return;
+        }
+
         if(articulo == null){
             mView.mostrarErrorSinArticulo();
             return;
@@ -49,18 +70,6 @@ public class NuevoPedidoPresenter {
         mView.setCantidad(cantidad);
     }
 
-    public void setArticulo(int posicionArticulo) {
-        articulo = ArticuloService.getArticulos().get(posicionArticulo);
-    }
-
-    public void setCantidad(CharSequence cantidad) {
-        try{
-            this.cantidad = Integer.parseInt(cantidad.toString());
-        } catch (Exception e) {
-            mView.mostrarErrorIngresarCantidad();
-        }
-    }
-
     public List<String> getNombresArticulos(){
         List<String> nombresArticulos = new ArrayList<>();
 
@@ -79,9 +88,5 @@ public class NuevoPedidoPresenter {
         }
 
         return nombresClientes;
-    }
-
-    public void setCliente(int posicionCliente) {
-        this.cliente = ClienteService.getClientes().get(posicionCliente);
     }
 }
