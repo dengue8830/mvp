@@ -18,4 +18,8 @@ public class ClienteService {
     public static List<Cliente> getClientes(){
         return clientes;
     }
+
+    public static void addCliente(String nombre, String direccion) {
+        clientes.add(new Cliente(clientes.size()+1, nombre, direccion));
+    }
 }

@@ -12,6 +12,7 @@ import com.amla.examen2.R;
 import com.amla.examen2.presenter.MainPresenter;
 import com.amla.examen2.views.fragments.ListadoPedidosFragment;
 import com.amla.examen2.views.fragments.NuevoArticuloFragment;
+import com.amla.examen2.views.fragments.NuevoClienteFragment;
 import com.amla.examen2.views.fragments.NuevoPedidoFragment;
 
 public class MainActivity extends AppCompatActivity{
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                mPresenter.opcionClickeada(item.getItemId(), R.id.navigation_nuevo_pedido, R.id.navigation_listado_pedidos, R.id.navigation_nuevo_articulo);
+                mPresenter.opcionClickeada(item.getItemId(), R.id.navigation_nuevo_pedido, R.id.navigation_listado_pedidos, R.id.navigation_nuevo_articulo, R.id.navigation_nuevo_cliente);
                 return true;
             }
 
@@ -61,5 +62,9 @@ public class MainActivity extends AppCompatActivity{
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+    public void navegarNuevoCliente() {
+        navegarHacia(NuevoClienteFragment.newInstance());
     }
 }

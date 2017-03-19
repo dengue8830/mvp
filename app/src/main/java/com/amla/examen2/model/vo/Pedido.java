@@ -17,6 +17,14 @@ public class Pedido {
         this.cliente = cliente;
     }
 
+    public Pedido(int id, Articulo articulo, Cliente cliente, int cantidad, Calendar fecha) {
+        this.id = id;
+        this.articulo = articulo;
+        this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.cliente = cliente;
+    }
+
     public int getId() {
         return id;
     }

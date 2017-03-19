@@ -11,7 +11,9 @@ import com.amla.examen2.model.vo.Pedido;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAdapter.ViewHolder> {
 
@@ -34,6 +36,8 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         holder.mCliente.setText(holder.mPedido.getCliente().getNombre());
         holder.mTotal.setText(" total: $"+holder.mPedido.getTotal());
         holder.mDetallePedido.setText(holder.mPedido.getCantidad()+" x "+holder.mPedido.getArticulo().getNombre() + " ( c/u $"+holder.mPedido.getArticulo().getPrecio()+")");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        holder.mFecha.setText(sdf.format(holder.mPedido.getFecha().getTime()));
     }
 
     @Override
@@ -47,6 +51,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         final TextView mTotal;
         final TextView mCliente;
         final TextView mDetallePedido;
+        final TextView mFecha;
         Pedido mPedido;
 
         ViewHolder(View view) {
@@ -55,6 +60,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
             mTotal = (TextView) view.findViewById(R.id.total);
             mCliente = (TextView) view.findViewById(R.id.cliente);
             mDetallePedido = (TextView) view.findViewById(R.id.detalle_pedido);
+            mFecha = (TextView) view.findViewById(R.id.fecha);
         }
     }
 }

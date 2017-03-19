@@ -9,13 +9,15 @@ public class MainPresenter {
         mMainActivity = mainActivity;
     }
 
-    public void opcionClickeada(int itemId, final int nuevoPedidoOption, int listaPedidosOption, int nuevoArticuloOption){
+    public void opcionClickeada(int itemId, final int nuevoPedidoOption, int listaPedidosOption, int nuevoArticuloOption, int nuevoClienteOption){
         if (itemId == listaPedidosOption){
             mMainActivity.navegarListaPedidos();
         } else if (itemId == nuevoPedidoOption) {
             mMainActivity.navegarNuevoPedido();
         } else  if (itemId == nuevoArticuloOption) {
             mMainActivity.navegarNuevoArticulo();
+        } else if(itemId == nuevoClienteOption) {
+            mMainActivity.navegarNuevoCliente();
         }
     }
 }

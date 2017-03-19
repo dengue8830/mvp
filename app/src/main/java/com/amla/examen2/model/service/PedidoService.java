@@ -12,7 +12,13 @@ public class PedidoService {
     private static List<Pedido> pedidos = new ArrayList<>();
 
     static {
-        pedidos.add(new Pedido(pedidos.size()+1, ArticuloService.getArticulos().get(0), ClienteService.getClientes().get(0), 2));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, 10);
+        pedidos.add(new Pedido(pedidos.size()+1, ArticuloService.getArticulos().get(0), ClienteService.getClientes().get(0), 2, cal));
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Calendar.DAY_OF_MONTH, 11);
+        pedidos.add(new Pedido(pedidos.size()+1, ArticuloService.getArticulos().get(1), ClienteService.getClientes().get(1), 3, cal2));
     }
 
     public static List<Pedido> getPedidos(){
