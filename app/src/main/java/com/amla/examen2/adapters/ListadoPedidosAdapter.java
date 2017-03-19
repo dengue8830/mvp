@@ -35,7 +35,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         //TODO: Un presentador deberia formatear el texto y darselo
         holder.mCliente.setText(holder.mPedido.getCliente().getNombre());
         holder.mTotal.setText(" total: $"+holder.mPedido.getTotal());
-        holder.mDetallePedido.setText(holder.mPedido.getCantidad()+" x "+holder.mPedido.getArticulo().getNombre() + " ( c/u $"+holder.mPedido.getArticulo().getPrecio()+")");
+        holder.mDetallePedido.setText(holder.mPedido.getCantidad()+" x "+holder.mPedido.getArticulo().getNombre() + " (c/u $"+holder.mPedido.getArticulo().getPrecio()+")");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         holder.mFecha.setText(sdf.format(holder.mPedido.getFecha().getTime()));
     }

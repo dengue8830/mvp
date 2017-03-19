@@ -20,6 +20,7 @@ public class ListadoPedidosFragment extends Fragment {
     private ListadoPedidosPresenter mPresenter;
     private ListadoPedidosAdapter mAdapter;
     private TextView tvFiltroFecha;
+    private TextView tvTotalDias;
 
     /**
      * Mandatory empty constructor
@@ -47,6 +48,8 @@ public class ListadoPedidosFragment extends Fragment {
         mAdapter = new ListadoPedidosAdapter(mPresenter.getPedidos());
         recyclerView.setAdapter(mAdapter);
 
+        tvTotalDias = (TextView) view.findViewById(R.id.total_dias);
+        tvTotalDias.setText(mPresenter.getTotalDias());
         tvFiltroFecha = (TextView) view.findViewById(R.id.filtroFecha);
         tvFiltroFecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,5 +78,9 @@ public class ListadoPedidosFragment extends Fragment {
 
     public void updateFechaFiltroTextView(String fechaFiltro) {
         tvFiltroFecha.setText(fechaFiltro);
+    }
+
+    public void setTotalDias(String totalDias) {
+        tvTotalDias.setText(totalDias);
     }
 }

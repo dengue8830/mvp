@@ -27,6 +27,7 @@ public class PedidoDAO {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String sortOrderPedidos = PedidoSchema.COLUMNA_ID + " DESC";
         Cursor cursorPedidos = db.query(PedidoSchema.TABLE_NAME, PedidoSchema.CAMPOS, null, null, null, null, sortOrderPedidos);
+
         while (cursorPedidos.moveToNext()) {
             Calendar fecha = Calendar.getInstance();
             fecha.setTimeInMillis(cursorPedidos.getLong(cursorPedidos.getColumnIndex(PedidoSchema.COLUMNA_FECHA)));

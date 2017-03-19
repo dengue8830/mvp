@@ -12,8 +12,8 @@ import java.util.List;
 public class ArticuloDAO {
     private static List<Articulo> articulos = new ArrayList<>();
     static {
-        articulos.add(new Articulo(1, "ventilador", 200d));
-        articulos.add(new Articulo(2, "monitor", 1200d));
+        articulos.add(new Articulo(1, "Coca Cola 1.25lts", 200d));
+        articulos.add(new Articulo(2, "Gatorade 250ml", 1200d));
     }
     public static List<Articulo> getArticulos(){
         return articulos;

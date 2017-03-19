@@ -43,22 +43,30 @@ public class ListadoPedidosPresenter implements DatePickerDialogFragment.DatePic
 
         mPedidos.clear();
         List<Pedido> pedidosFiltrados = PedidoService.getPedidos(fecha);
-
-        for (Pedido pedido : pedidosFiltrados) {
-            mPedidos.add(pedido);
-        }
+        mPedidos.addAll(pedidosFiltrados);
 
         mView.updateListado();
 
-        String myFormat = "dd/MM/yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
 
         mView.updateFechaFiltroTextView(sdf.format(fecha.getTime()));
+
+        mView.setTotalDias(getTotalDias());
     }
 
     public void filtroFechaSeleccionado() {
         Calendar hoy = Calendar.getInstance();
         DatePickerDTO dto = new DatePickerDTO(hoy.get(Calendar.DAY_OF_MONTH), hoy.get(Calendar.MONTH), hoy.get(Calendar.YEAR));
         mView.abrirDialogFecha(dto);
+    }
+
+    public String getTotalDias() {
+        double total = 0d;
+
+        for (Pedido pedido : mPedidos) {
+            total += pedido.getArticulo().getPrecio() * pedido.getCantidad();
+        }
+
+        return total+"";
     }
 }
