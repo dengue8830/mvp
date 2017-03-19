@@ -66,4 +66,14 @@ public class LineaPedidoViewHolder extends RecyclerView.ViewHolder {
     public LineaPedidoViewHolderPresenter getPresenter(){
         return mPresenter;
     }
+
+    public void setCantidad(int cantidad) {
+        mCantidad.setText(cantidad == 0 ? "" : cantidad + "");
+    }
+
+    public void setArticulo(Integer posicionArticulo) {
+        if(posicionArticulo != null){
+            mArticulo.setSelection(posicionArticulo);
+        }
+    }
 }

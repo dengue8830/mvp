@@ -17,6 +17,12 @@ public class Pedido {
 //        this.fe
     }
 
+    public Pedido(int id, List<LineaPedido> lineasPedido, Calendar fecha) {
+        this.id = id;
+        this.lineasPedido = lineasPedido;
+        this.fecha = fecha;
+    }
+
     public int getId() {
         return id;
     }

@@ -9,6 +9,15 @@ public class LineaPedido {
     private Articulo articulo;
     private int cantidad;
 
+    public LineaPedido() {
+    }
+
+    public LineaPedido(int id, Articulo articulo, int cantidad) {
+        this.id = id;
+        this.articulo = articulo;
+        this.cantidad = cantidad;
+    }
+
     public int getId() {
         return id;
     }

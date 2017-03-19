@@ -11,10 +11,7 @@ import android.widget.Toast;
 
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListaLineasPedidoAdapter;
-import com.amla.examen2.model.vo.LineaPedido;
 import com.amla.examen2.presenter.NuevoPedidoPresenter;
-
-import java.util.List;
 
 public class NuevoPedidoFragment extends Fragment {
     private ListaLineasPedidoAdapter mAdapter;
@@ -79,9 +76,5 @@ public class NuevoPedidoFragment extends Fragment {
 
     public void mostrarErrorCantidadDebeSerMayorAcero() {
         Toast.makeText(getContext(), "Las cantidades deben ser mayor a cero", Toast.LENGTH_LONG).show();
-    }
-
-    public void clearListado(List<LineaPedido> lineasPedido) {
-        mAdapter.clear(lineasPedido);
     }
 }

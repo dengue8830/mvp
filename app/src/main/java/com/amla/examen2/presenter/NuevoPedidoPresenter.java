@@ -16,11 +16,14 @@ public class NuevoPedidoPresenter {
 
     public NuevoPedidoPresenter(NuevoPedidoFragment view) {
         mView = view;
-        inicializarLineasPedido();
+        mLineasPedido = new ArrayList<>();
+        mLineasPedido.add(new LineaPedido());
+//        inicializarLineasPedido();
     }
 
     private void inicializarLineasPedido(){
-        mLineasPedido = new ArrayList<>();
+//        mLineasPedido = new ArrayList<>();
+        mLineasPedido.clear();
         mLineasPedido.add(new LineaPedido());
     }
 
@@ -46,14 +49,20 @@ public class NuevoPedidoPresenter {
             }
 
         }
+
         try {
-            PedidoService.addPedido(mLineasPedido);
+            List<LineaPedido> cloned = new ArrayList<>();
+            cloned.addAll(mLineasPedido);
+            PedidoService.addPedido(cloned);
         } catch (Exception e) {
             mView.errorAlGuardarPedido();
         }
 
-        inicializarLineasPedido();
-        mView.clearListado(getLineasPedido());
+//        inicializarLineasPedido();
+        mLineasPedido.clear();
+        mView.updateListado();
+        mLineasPedido.add(new LineaPedido());
+        mView.updateListado();
 
         mView.pedidoGuardado();
     }

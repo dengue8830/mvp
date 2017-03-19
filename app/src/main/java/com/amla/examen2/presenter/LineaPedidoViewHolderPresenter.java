@@ -37,5 +37,30 @@ public class LineaPedidoViewHolderPresenter {
 
     public void setLineaPedido(LineaPedido lineaPedido) {
         mLineaPedido = lineaPedido;
+        mViewHolder.setCantidad(mLineaPedido.getCantidad());
+        List<Articulo> articulos = ArticuloService.getArticulos();
+
+        if (mLineaPedido.getArticulo() == null) {
+            if (!articulos.isEmpty()) {
+                mLineaPedido.setArticulo(ArticuloService.getArticulos().get(0));
+                mViewHolder.setArticulo(0);
+            } else {
+                mViewHolder.setArticulo(null);
+            }
+        } else {
+            mViewHolder.setArticulo(getPosicionArticulo());
+        }
+    }
+
+    public Integer getPosicionArticulo() {
+        List<Articulo> articulos = ArticuloService.getArticulos();
+
+        for (int i = 0; i < articulos.size(); i++) {
+            if(mLineaPedido.getArticulo().getId() == articulos.get(i).getId()){
+                return i;
+            }
+        }
+
+        return 0;
     }
 }

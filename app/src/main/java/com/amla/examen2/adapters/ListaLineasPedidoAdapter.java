@@ -22,10 +22,7 @@ public class ListaLineasPedidoAdapter extends RecyclerView.Adapter<LineaPedidoVi
 
     public ListaLineasPedidoAdapter(List<LineaPedido> lineasPedido, List<Articulo> articulos, Context context) {
 //        mLineasPedido = lineasPedido;
-        mLineasPedido = new ArrayList<>();
-        for (LineaPedido lineaPedido : lineasPedido) {
-            mLineasPedido.add(lineaPedido);
-        }
+        mLineasPedido = lineasPedido;
         mArticulos = articulos;
         mContext = context;
     }
@@ -44,11 +41,5 @@ public class ListaLineasPedidoAdapter extends RecyclerView.Adapter<LineaPedidoVi
     @Override
     public int getItemCount() {
         return mLineasPedido.size();
-    }
-
-    public void clear(List<LineaPedido> lineasPedido){
-        mLineasPedido.clear();
-//        mLineasPedido.addAll(lineasPedido);
-        this.notifyDataSetChanged();
     }
 }

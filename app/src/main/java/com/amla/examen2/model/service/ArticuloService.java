@@ -6,14 +6,12 @@ import com.amla.examen2.model.vo.Articulo;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by dengue8830 on 3/16/17.
- */
-
 public class ArticuloService {
 
     public static List<Articulo> getArticulos(){
-        return ArticuloDAO.getArticulos();
+        List<Articulo> articulos = new ArrayList<>();
+        articulos.addAll(ArticuloDAO.getArticulos());
+        return articulos;
     }
 
     public static void addArticulo(String nombre, double precio) {

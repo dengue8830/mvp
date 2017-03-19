@@ -25,11 +25,9 @@ public class ListadoPedidosPresenter implements DatePickerDialogFragment.DatePic
 
     public void loadPedidos(){
         mPedidos.clear();
-
-        for (Pedido pedido : PedidoService.getPedidos()) {
-            mPedidos.add(pedido);
-        }
+        mPedidos.addAll(PedidoService.getPedidos());
     }
+
     public List<Pedido> getPedidos(){
         loadPedidos();
 

@@ -26,7 +26,9 @@ public class PedidoService {
     }
 
     public static List<Pedido> getPedidos(){
-        return pedidos;
+        List<Pedido> cloned = new ArrayList<>();
+        cloned.addAll(pedidos);
+        return cloned;
     }
 
     public static List<Pedido> getPedidos(Calendar fecha){
