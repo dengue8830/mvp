@@ -45,16 +45,24 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void navegarListaPedidos() {
+        setTitle("Lista de pedidos");
         navegarHacia(ListadoPedidosFragment.newInstance());
     }
 
 
     public void navegarNuevoPedido() {
+        setTitle("Nuevo pedido");
         navegarHacia(NuevoPedidoFragment.newInstance());
     }
 
     public void navegarNuevoArticulo() {
+        setTitle("Nuevo artículo");
         navegarHacia(NuevoArticuloFragment.newInstance());
+    }
+
+    public void navegarNuevoCliente() {
+        setTitle("Nuevo cliente");
+        navegarHacia(NuevoClienteFragment.newInstance());
     }
 
     public void navegarHacia(Fragment fragment) {
@@ -62,9 +70,5 @@ public class MainActivity extends AppCompatActivity{
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
-    }
-
-    public void navegarNuevoCliente() {
-        navegarHacia(NuevoClienteFragment.newInstance());
     }
 }

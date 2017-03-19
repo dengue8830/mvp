@@ -1,5 +1,7 @@
 package com.amla.examen2.model.vo;
 
+import com.amla.examen2.model.service.EmpleadoService;
+
 import java.util.Calendar;
 
 public class Pedido {
@@ -7,6 +9,7 @@ public class Pedido {
     private Calendar fecha;
     private Articulo articulo;
     private Cliente cliente;
+    private Empleado empleado;
     private int cantidad;
 
     public Pedido(int id, Articulo articulo, Cliente cliente, int cantidad) {
@@ -15,6 +18,7 @@ public class Pedido {
         this.fecha = Calendar.getInstance();
         this.cantidad = cantidad;
         this.cliente = cliente;
+        this.empleado = EmpleadoService.getEmpleadoLogueado();
     }
 
     public Pedido(int id, Articulo articulo, Cliente cliente, int cantidad, Calendar fecha) {
@@ -23,6 +27,7 @@ public class Pedido {
         this.fecha = fecha;
         this.cantidad = cantidad;
         this.cliente = cliente;
+        this.empleado = EmpleadoService.getEmpleadoLogueado();
     }
 
     public int getId() {
@@ -63,5 +68,9 @@ public class Pedido {
 
     public Cliente getCliente(){
         return this.cliente;
+    }
+
+    public Empleado getEmpleado(){
+        return this.empleado;
     }
 }

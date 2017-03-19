@@ -67,6 +67,6 @@ public class ListadoPedidosPresenter implements DatePickerDialogFragment.DatePic
             total += pedido.getArticulo().getPrecio() * pedido.getCantidad();
         }
 
-        return total+"";
+        return "$"+total;
     }
 }
