@@ -3,7 +3,6 @@ package com.amla.examen2.presenter;
 import com.amla.examen2.model.service.ArticuloService;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.Articulo;
-import com.amla.examen2.model.vo.LineaPedido;
 import com.amla.examen2.views.fragments.NuevoPedidoFragment;
 
 import java.util.ArrayList;
@@ -12,62 +11,56 @@ import java.util.List;
 public class NuevoPedidoPresenter {
 
     private NuevoPedidoFragment mView;
-    private List<LineaPedido> mLineasPedido;
+    private Articulo articulo;
+    private int cantidad;
 
     public NuevoPedidoPresenter(NuevoPedidoFragment view) {
         mView = view;
-        mLineasPedido = new ArrayList<>();
-        mLineasPedido.add(new LineaPedido());
-//        inicializarLineasPedido();
-    }
-
-    private void inicializarLineasPedido(){
-//        mLineasPedido = new ArrayList<>();
-        mLineasPedido.clear();
-        mLineasPedido.add(new LineaPedido());
     }
 
     public List<Articulo> getArticulos() {
         return  ArticuloService.getArticulos();
     }
 
-    public void addLineaPedido() {
-        mLineasPedido.add(new LineaPedido());
-        mView.updateListado();
-    }
-
     public void addPedido() {
-        for (LineaPedido lineaPedido : mLineasPedido) {
-            if(lineaPedido.getArticulo() == null){
-                mView.mostrarErrorSinArticulo();
-                return;
-            }
+        if(articulo == null){
+            mView.mostrarErrorSinArticulo();
+            return;
+        }
 
-            if(lineaPedido.getCantidad() == 0) {
-                mView.mostrarErrorCantidadDebeSerMayorAcero();
-                return;
-            }
-
+        if(cantidad == 0) {
+            mView.mostrarErrorCantidadDebeSerMayorAcero();
+            return;
         }
 
         try {
-            List<LineaPedido> cloned = new ArrayList<>();
-            cloned.addAll(mLineasPedido);
-            PedidoService.addPedido(cloned);
+            PedidoService.addPedido(articulo, cantidad);
         } catch (Exception e) {
             mView.errorAlGuardarPedido();
         }
 
-//        inicializarLineasPedido();
-        mLineasPedido.clear();
-        mView.updateListado();
-        mLineasPedido.add(new LineaPedido());
-        mView.updateListado();
-
         mView.pedidoGuardado();
     }
 
-    public List<LineaPedido> getLineasPedido(){
-        return mLineasPedido;
+    public void setArticulo(int posicionArticulo) {
+        articulo = ArticuloService.getArticulos().get(posicionArticulo);
+    }
+
+    public void setCantidad(CharSequence cantidad) {
+        try{
+            this.cantidad = Integer.parseInt(cantidad.toString());
+        } catch (Exception e) {
+            mView.mostrarErrorCantidadDebeSerMayorAcero();
+        }
+    }
+
+    public List<String> getNombresArticulos(){
+        List<String> nombresArticulos = new ArrayList<>();
+
+        for (Articulo articulo : ArticuloService.getArticulos()){
+            nombresArticulos.add(articulo.getNombre());
+        }
+
+        return nombresArticulos;
     }
 }

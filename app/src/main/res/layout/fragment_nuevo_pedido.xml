@@ -3,10 +3,53 @@
     android:layout_height="match_parent"
     android:padding="15dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lista_lineas_pedido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Articulo" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Cantidad" />
+
+            <EditText
+                android:id="@+id/cantidad"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="10"
+                android:inputType="numberSigned"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnGuardarPedido"
@@ -15,14 +58,5 @@
         android:layout_alignParentBottom="true"
         android:text="GUARDAR"
         android:background="@color/colorAccent"
-        android:textColor="#FFFF"/>
-
-    <Button
-        android:id="@+id/btnNuevaLineaPedido"
-        android:layout_above="@+id/btnGuardarPedido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="+ Linea Pedido"
-        android:background="@color/colorPrimary"
         android:textColor="#FFFF"/>
 </RelativeLayout>

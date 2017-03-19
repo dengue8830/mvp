@@ -5,14 +5,14 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/cantidad_lineas_pedido"
+        android:id="@+id/cliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/subtotal"
+        android:id="@+id/total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

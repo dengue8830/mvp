@@ -2,10 +2,6 @@ package com.amla.examen2.presenter;
 
 import com.amla.examen2.views.activities.MainActivity;
 
-/**
- * Created by dengue8830 on 3/17/17.
- */
-
 public class MainPresenter {
     private MainActivity mMainActivity;
 

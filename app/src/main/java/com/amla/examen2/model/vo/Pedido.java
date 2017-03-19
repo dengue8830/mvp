@@ -1,26 +1,18 @@
 package com.amla.examen2.model.vo;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class Pedido {
     private int id;
     private Calendar fecha;
-    private List<LineaPedido> lineasPedido;
+    private Articulo articulo;
+    private int cantidad;
 
-    public Pedido(int id, List<LineaPedido> lineasPedido) {
+    public Pedido(int id, Articulo articulo, int cantidad) {
         this.id = id;
-        this.lineasPedido = lineasPedido;
+        this.articulo = articulo;
         this.fecha = Calendar.getInstance();
-//        this.fecha.set(Calendar.HOUR_OF_DAY, 0);
-//        this.fe
-    }
-
-    public Pedido(int id, List<LineaPedido> lineasPedido, Calendar fecha) {
-        this.id = id;
-        this.lineasPedido = lineasPedido;
-        this.fecha = fecha;
+        this.cantidad = cantidad;
     }
 
     public int getId() {
@@ -29,14 +21,6 @@ public class Pedido {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<LineaPedido> getLineasPedido() {
-        return lineasPedido;
-    }
-
-    public void setLineasPedido(List<LineaPedido> lineasPedido) {
-        this.lineasPedido = lineasPedido;
     }
 
     public Calendar getFecha() {
@@ -48,15 +32,22 @@ public class Pedido {
     }
 
     public double getTotal(){
-        if(lineasPedido == null || lineasPedido.isEmpty())
-            return 0;
+        return articulo.getPrecio() * cantidad;
+    }
 
-        double total = 0;
+    public Articulo getArticulo() {
+        return articulo;
+    }
 
-        for (LineaPedido lineaPedido : lineasPedido) {
-            total += lineaPedido.getCantidad() * lineaPedido.getArticulo().getPrecio();
-        }
+    public void setArticulo(Articulo articulo) {
+        this.articulo = articulo;
+    }
 
-        return total;
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }

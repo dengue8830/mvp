@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.amla.examen2.R;
-import com.amla.examen2.views.fragments.ListadoPedidosFragment;
 import com.amla.examen2.model.vo.Pedido;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mPedido = mPedidos.get(position);
-        holder.mCantidadLineasPedido.setText(mPedidos.get(position).getLineasPedido().size()+"");
-        holder.mSubtotal.setText(mPedidos.get(position).getTotal()+"");
+        holder.mTotal.setText(holder.mPedido.getTotal()+"");
+        holder.mCliente.setText("david");
     }
 
     @Override
@@ -40,15 +41,15 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
 
     class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        final TextView mCantidadLineasPedido;
-        final TextView mSubtotal;
+        final TextView mTotal;
+        final TextView mCliente;
         Pedido mPedido;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            mCantidadLineasPedido = (TextView) view.findViewById(R.id.cantidad_lineas_pedido);
-            mSubtotal = (TextView) view.findViewById(R.id.subtotal);
+            mTotal = (TextView) view.findViewById(R.id.total);
+            mCliente = (TextView) view.findViewById(R.id.cliente);
         }
     }
 }
