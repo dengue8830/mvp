@@ -1,6 +1,5 @@
 package com.amla.examen2.views;
 
-import com.amla.examen2.dto.DatePickerDTO;
 import com.amla.examen2.model.vo.Pedido;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.List;
 public interface ListadoPedidosView {
     void setPedidos(List<Pedido> pedidos);
     void setTotalDias(String totalDias);
-    void abrirDialogFecha(DatePickerDTO dto);
+    void abrirDialogFecha(int diaDelMes, int mesDelAno, int ano);
     void updateFechaFiltro(String fechaFiltro);
     void updateListado();
 }

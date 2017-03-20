@@ -8,12 +8,13 @@ import android.widget.TextView;
 
 import com.amla.examen2.R;
 import com.amla.examen2.model.vo.Pedido;
+import com.amla.examen2.presenter.ListadoPedidosItemPresenter;
+import com.amla.examen2.presenter.impl.ListadoPedidosItemPresenterImpl;
+import com.amla.examen2.views.ListadoPedidosItemView;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
-public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAdapter.ViewHolder> {
+public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAdapter.ListadoPedidosItemViewHolder> {
 
     private final List<Pedido> mPedidos;
 
@@ -22,20 +23,14 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ListadoPedidosItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_listadopedidos_item, parent, false);
-        return new ViewHolder(view);
+        return new ListadoPedidosItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mPedido = mPedidos.get(position);
-        //TODO: Un presentador deberia formatear el texto y darselo
-        holder.mCliente.setText(holder.mPedido.getCliente().getNombre());
-        holder.mTotal.setText(" total: $"+holder.mPedido.getTotal());
-        holder.mDetallePedido.setText(holder.mPedido.getCantidad()+" x "+holder.mPedido.getArticulo().getNombre() + " (c/u $"+holder.mPedido.getArticulo().getPrecio()+")");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        holder.mLog.setText(holder.mPedido.getEmpleado().getNombre() + " " + holder.mPedido.getEmpleado().getApellido()+  " - " + sdf.format(holder.mPedido.getFecha().getTime()));
+    public void onBindViewHolder(final ListadoPedidosItemViewHolder holder, int position) {
+        holder.mPresenter.onBindViewHolder(mPedidos.get(position));
     }
 
     @Override
@@ -43,22 +38,40 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         return mPedidos.size();
     }
 
-    // TODO: debe encapsular los atributos...
-    class ViewHolder extends RecyclerView.ViewHolder {
-        final View mView;
-        final TextView mTotal;
-        final TextView mCliente;
-        final TextView mDetallePedido;
-        final TextView mLog;
-        Pedido mPedido;
+    class ListadoPedidosItemViewHolder extends RecyclerView.ViewHolder implements ListadoPedidosItemView{
+        private final TextView mTotal;
+        private final TextView mCliente;
+        private final TextView mDetallePedido;
+        private final TextView mLog;
+        ListadoPedidosItemPresenter mPresenter;
 
-        ViewHolder(View view) {
+        ListadoPedidosItemViewHolder(View view) {
             super(view);
-            mView = view;
             mTotal = (TextView) view.findViewById(R.id.total);
             mCliente = (TextView) view.findViewById(R.id.cliente);
             mDetallePedido = (TextView) view.findViewById(R.id.detalle_pedido);
             mLog = (TextView) view.findViewById(R.id.log);
+            mPresenter = new ListadoPedidosItemPresenterImpl(this);
+        }
+
+        @Override
+        public void setTotal(String total){
+            mTotal.setText(total);
+        }
+
+        @Override
+        public void setCliente(String cliente){
+            mCliente.setText(cliente);
+        }
+
+        @Override
+        public void setDetalle(String detalle){
+            mDetallePedido.setText(detalle);
+        }
+
+        @Override
+        public void setLog(String log){
+            mLog.setText(log);
         }
     }
 }

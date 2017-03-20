@@ -1,12 +1,11 @@
 package com.amla.examen2.presenter.impl;
 
-import com.amla.examen2.dto.DatePickerDTO;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.service.impl.PedidoServiceImpl;
 import com.amla.examen2.model.vo.Pedido;
 import com.amla.examen2.presenter.ListadoPedidosPresenter;
-import com.amla.examen2.views.impl.ListadoPedidosFragment;
 import com.amla.examen2.views.ListadoPedidosView;
+import com.amla.examen2.views.impl.ListadoPedidosFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,8 +60,7 @@ public class ListadoPedidosPresenterImpl implements ListadoPedidosPresenter {
     @Override
     public void filtroFechaSeleccionado() {
         Calendar hoy = Calendar.getInstance();
-        DatePickerDTO dto = new DatePickerDTO(hoy.get(Calendar.DAY_OF_MONTH), hoy.get(Calendar.MONTH), hoy.get(Calendar.YEAR));
-        mView.abrirDialogFecha(dto);
+        mView.abrirDialogFecha(hoy.get(Calendar.DAY_OF_MONTH), hoy.get(Calendar.MONTH), hoy.get(Calendar.YEAR));
     }
 
     private String getTotalDias() {

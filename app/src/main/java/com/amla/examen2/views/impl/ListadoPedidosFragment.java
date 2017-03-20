@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListadoPedidosAdapter;
-import com.amla.examen2.dto.DatePickerDTO;
 import com.amla.examen2.model.vo.Pedido;
 import com.amla.examen2.presenter.ListadoPedidosPresenter;
 import com.amla.examen2.presenter.impl.ListadoPedidosPresenterImpl;
@@ -78,13 +77,13 @@ public class ListadoPedidosFragment extends Fragment implements ListadoPedidosVi
     }
 
     @Override
-    public void abrirDialogFecha(DatePickerDTO dto){
+    public void abrirDialogFecha(int diaDelMes, int mesDelAno, int ano){
         DatePickerBuilder dpb = new DatePickerBuilder()
                 .setFragmentManager(getActivity().getSupportFragmentManager())
                 .setStyleResId(R.style.BetterPickersDialogFragment_Light)
-                .setDayOfMonth(dto.getDiaDelMes())
-                .setMonthOfYear(dto.getMesDelAno())
-                .setYear(dto.getAno())
+                .setDayOfMonth(diaDelMes)
+                .setMonthOfYear(mesDelAno)
+                .setYear(ano)
                 .setYearOptional(false)
                 .addDatePickerDialogHandler(mPresenter);
         dpb.show();
