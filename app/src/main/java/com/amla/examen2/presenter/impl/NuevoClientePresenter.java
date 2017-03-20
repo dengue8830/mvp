@@ -1,7 +1,7 @@
-package com.amla.examen2.presenter;
+package com.amla.examen2.presenter.impl;
 
 import com.amla.examen2.model.service.ClienteService;
-import com.amla.examen2.views.fragments.NuevoClienteFragment;
+import com.amla.examen2.views.impl.NuevoClienteFragment;
 
 public class NuevoClientePresenter {
     private NuevoClienteFragment mView;

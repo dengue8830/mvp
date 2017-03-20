@@ -1,6 +1,6 @@
-package com.amla.examen2.presenter;
+package com.amla.examen2.presenter.impl;
 
-import com.amla.examen2.views.activities.MainActivity;
+import com.amla.examen2.views.impl.MainActivity;
 
 public class MainPresenter {
     private MainActivity mMainActivity;

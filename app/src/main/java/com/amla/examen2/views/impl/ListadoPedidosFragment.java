@@ -1,4 +1,4 @@
-package com.amla.examen2.views.fragments;
+package com.amla.examen2.views.impl;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,14 +13,20 @@ import android.widget.TextView;
 import com.amla.examen2.R;
 import com.amla.examen2.adapters.ListadoPedidosAdapter;
 import com.amla.examen2.dto.DatePickerDTO;
+import com.amla.examen2.model.vo.Pedido;
 import com.amla.examen2.presenter.ListadoPedidosPresenter;
+import com.amla.examen2.presenter.impl.ListadoPedidosPresenterImpl;
+import com.amla.examen2.views.ListadoPedidosView;
 import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
 
-public class ListadoPedidosFragment extends Fragment {
+import java.util.List;
+
+public class ListadoPedidosFragment extends Fragment implements ListadoPedidosView {
     private ListadoPedidosPresenter mPresenter;
     private ListadoPedidosAdapter mAdapter;
     private TextView tvFiltroFecha;
     private TextView tvTotalDias;
+    private RecyclerView rvPedidos;
 
     /**
      * Mandatory empty constructor
@@ -35,7 +41,7 @@ public class ListadoPedidosFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new ListadoPedidosPresenter(this);
+        mPresenter = new ListadoPedidosPresenterImpl(this);
     }
 
     @Override
@@ -43,13 +49,10 @@ public class ListadoPedidosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_listadopedidos_list, container, false);
 
         Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listaPedidos);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mAdapter = new ListadoPedidosAdapter(mPresenter.getPedidos());
-        recyclerView.setAdapter(mAdapter);
+        rvPedidos = (RecyclerView) view.findViewById(R.id.listaPedidos);
+        rvPedidos.setLayoutManager(new LinearLayoutManager(context));
 
         tvTotalDias = (TextView) view.findViewById(R.id.total_dias);
-        tvTotalDias.setText(mPresenter.getTotalDias());
         tvFiltroFecha = (TextView) view.findViewById(R.id.filtroFecha);
         tvFiltroFecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +63,21 @@ public class ListadoPedidosFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    public void setPedidos(List<Pedido> pedidos){
+        if(mAdapter == null){
+            mAdapter = new ListadoPedidosAdapter(pedidos);
+            rvPedidos.setAdapter(mAdapter);
+        }
+    }
+
+    @Override
     public void abrirDialogFecha(DatePickerDTO dto){
         DatePickerBuilder dpb = new DatePickerBuilder()
                 .setFragmentManager(getActivity().getSupportFragmentManager())
@@ -72,14 +90,17 @@ public class ListadoPedidosFragment extends Fragment {
         dpb.show();
     }
 
+    @Override
     public void updateListado() {
         mAdapter.notifyDataSetChanged();
     }
 
-    public void updateFechaFiltroTextView(String fechaFiltro) {
+    @Override
+    public void updateFechaFiltro(String fechaFiltro) {
         tvFiltroFecha.setText(fechaFiltro);
     }
 
+    @Override
     public void setTotalDias(String totalDias) {
         tvTotalDias.setText(totalDias);
     }

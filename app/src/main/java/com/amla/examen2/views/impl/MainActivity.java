@@ -1,4 +1,4 @@
-package com.amla.examen2.views.activities;
+package com.amla.examen2.views.impl;
 
 
 import android.os.Bundle;
@@ -9,11 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.amla.examen2.R;
-import com.amla.examen2.presenter.MainPresenter;
-import com.amla.examen2.views.fragments.ListadoPedidosFragment;
-import com.amla.examen2.views.fragments.NuevoArticuloFragment;
-import com.amla.examen2.views.fragments.NuevoClienteFragment;
-import com.amla.examen2.views.fragments.NuevoPedidoFragment;
+import com.amla.examen2.presenter.impl.MainPresenter;
 
 public class MainActivity extends AppCompatActivity{
 

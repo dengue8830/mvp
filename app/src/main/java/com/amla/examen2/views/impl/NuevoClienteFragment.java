@@ -1,4 +1,4 @@
-package com.amla.examen2.views.fragments;
+package com.amla.examen2.views.impl;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.amla.examen2.R;
-import com.amla.examen2.presenter.NuevoClientePresenter;
+import com.amla.examen2.presenter.impl.NuevoClientePresenter;
 
 public class NuevoClienteFragment extends Fragment {
 

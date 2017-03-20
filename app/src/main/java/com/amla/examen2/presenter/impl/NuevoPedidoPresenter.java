@@ -1,11 +1,11 @@
-package com.amla.examen2.presenter;
+package com.amla.examen2.presenter.impl;
 
 import com.amla.examen2.model.service.ArticuloService;
 import com.amla.examen2.model.service.ClienteService;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.Cliente;
-import com.amla.examen2.views.fragments.NuevoPedidoFragment;
+import com.amla.examen2.views.impl.NuevoPedidoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
