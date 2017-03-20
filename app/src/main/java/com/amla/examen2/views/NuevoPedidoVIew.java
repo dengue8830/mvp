@@ -3,6 +3,7 @@ package com.amla.examen2.views;
 import java.util.List;
 
 public interface NuevoPedidoVIew {
+    void onResume();
     void setCantidad(int cantidad);
     void errorAlGuardarPedido();
     void pedidoGuardado();

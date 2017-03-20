@@ -5,7 +5,6 @@ import com.amla.examen2.model.service.impl.PedidoServiceImpl;
 import com.amla.examen2.model.vo.Pedido;
 import com.amla.examen2.presenter.ListadoPedidosPresenter;
 import com.amla.examen2.views.ListadoPedidosView;
-import com.amla.examen2.views.impl.ListadoPedidosFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class ListadoPedidosPresenterImpl implements ListadoPedidosPresenter {
     private List<Pedido> mPedidos;
     private PedidoService pedidoService;
 
-    public ListadoPedidosPresenterImpl(ListadoPedidosFragment view){
+    public ListadoPedidosPresenterImpl(ListadoPedidosView view){
         mView = view;
         mPedidos = new ArrayList<>();
         pedidoService = new PedidoServiceImpl();

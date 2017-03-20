@@ -8,7 +8,7 @@ import com.amla.examen2.views.impl.NuevoClienteFragment;
 public class NuevoClientePresenterImpl implements NuevoClientePresenter {
     private NuevoClienteView mView;
 
-    public NuevoClientePresenterImpl(NuevoClienteFragment view){
+    public NuevoClientePresenterImpl(NuevoClienteView view){
         mView = view;
     }
 

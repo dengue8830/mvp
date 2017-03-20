@@ -10,7 +10,7 @@ public class NuevoArticuloPresenterImpl implements NuevoArticuloPresenter {
     private NuevoArticuloView mView;
     private ArticuloService articuloService;
 
-    public NuevoArticuloPresenterImpl(NuevoArticuloFragment view){
+    public NuevoArticuloPresenterImpl(NuevoArticuloView view){
         mView = view;
         articuloService = new ArticuloServiceImpl();
     }

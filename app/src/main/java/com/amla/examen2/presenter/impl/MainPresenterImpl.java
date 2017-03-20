@@ -7,7 +7,7 @@ import com.amla.examen2.views.impl.MainActivity;
 public class MainPresenterImpl implements MainPresenter{
     private MainView mMainActivity;
 
-    public MainPresenterImpl(MainActivity mainActivity) {
+    public MainPresenterImpl(MainView mainActivity) {
         mMainActivity = mainActivity;
     }
 

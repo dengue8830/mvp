@@ -8,17 +8,18 @@ import com.amla.examen2.model.service.impl.PedidoServiceImpl;
 import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.Cliente;
 import com.amla.examen2.presenter.NuevoPedidoPresenter;
+import com.amla.examen2.views.NuevoPedidoVIew;
 import com.amla.examen2.views.impl.NuevoPedidoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
-    private NuevoPedidoFragment mView;
+    private NuevoPedidoVIew mView;
     private ArticuloService articuloService;
     private PedidoService pedidoService;
 
-    public NuevoPedidoPresenterImpl(NuevoPedidoFragment view) {
+    public NuevoPedidoPresenterImpl(NuevoPedidoVIew view) {
         mView = view;
         articuloService = new ArticuloServiceImpl();
         pedidoService = new PedidoServiceImpl();
