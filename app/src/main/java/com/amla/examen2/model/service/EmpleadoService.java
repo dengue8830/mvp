@@ -1,12 +1,17 @@
 package com.amla.examen2.model.service;
 
+import com.amla.examen2.model.dao.EmpleadoDao;
+import com.amla.examen2.model.dao.impl.EmpleadoDaoImpl;
 import com.amla.examen2.model.vo.Empleado;
 
 public class EmpleadoService {
+    protected EmpleadoDao empleadoDao;
 
-    private static Empleado empleadoLogueado = new Empleado(1, "David", "Rearte");
+    public EmpleadoService(){
+        empleadoDao = new EmpleadoDaoImpl();
+    }
 
-    public static Empleado getEmpleadoLogueado(){
-        return empleadoLogueado;
+    public Empleado getEmpleadoLogueado(){
+        return empleadoDao.getEmpleadoLogueado();
     }
 }

@@ -1,29 +1,37 @@
-package com.amla.examen2.model.dao;
+package com.amla.examen2.model.dao.impl;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.amla.examen2.model.dao.PedidoDao;
+import com.amla.examen2.model.db.BD;
 import com.amla.examen2.model.db.DbHelper;
 import com.amla.examen2.model.db.schema.ArticuloSchema;
 import com.amla.examen2.model.db.schema.LineaPedidoSchema;
 import com.amla.examen2.model.db.schema.PedidoSchema;
 import com.amla.examen2.model.vo.Articulo;
+import com.amla.examen2.model.vo.Cliente;
 import com.amla.examen2.model.vo.Pedido;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class PedidoDAO {
-    private DbHelper dbHelper;
+public class PedidoDaoImpl implements PedidoDao{
+//    private DbHelper dbHelper;
 
-    public PedidoDAO(Context context){
-        dbHelper = new DbHelper(context);
+//    public PedidoDaoImpl(Context context){
+//        dbHelper = new DbHelper(context);
+//    }
+
+    public PedidoDaoImpl(){
+
     }
 
     public List<Pedido> getPedidos(){
-        List<Pedido> pedidos = new ArrayList<>();
+        return BD.getPedidos();
+        /*List<Pedido> pedidos = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String sortOrderPedidos = PedidoSchema.COLUMNA_ID + " DESC";
         Cursor cursorPedidos = db.query(PedidoSchema.TABLE_NAME, PedidoSchema.CAMPOS, null, null, null, null, sortOrderPedidos);
@@ -37,7 +45,11 @@ public class PedidoDAO {
         }
         cursorPedidos.close();
         dbHelper.close();
-        return pedidos;
+        return pedidos;*/
+    }
+
+    public void addPedido(Articulo articulo, Cliente cliente, int cantidad) {
+        BD.insertPedido(articulo, cliente, cantidad);
     }
 
 //    private List<LineaPedido> getLineasPedido(int pedidoId, SQLiteDatabase db) {

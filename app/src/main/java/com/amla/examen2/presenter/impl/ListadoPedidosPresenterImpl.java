@@ -2,11 +2,11 @@ package com.amla.examen2.presenter.impl;
 
 import com.amla.examen2.dto.DatePickerDTO;
 import com.amla.examen2.model.service.PedidoService;
+import com.amla.examen2.model.service.impl.PedidoServiceImpl;
 import com.amla.examen2.model.vo.Pedido;
 import com.amla.examen2.presenter.ListadoPedidosPresenter;
 import com.amla.examen2.views.impl.ListadoPedidosFragment;
 import com.amla.examen2.views.ListadoPedidosView;
-import com.codetroopers.betterpickers.datepicker.DatePickerDialogFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,17 +17,19 @@ import java.util.Locale;
 public class ListadoPedidosPresenterImpl implements ListadoPedidosPresenter {
     private ListadoPedidosView mView;
     private List<Pedido> mPedidos;
+    private PedidoService pedidoService;
 
     public ListadoPedidosPresenterImpl(ListadoPedidosFragment view){
         mView = view;
         mPedidos = new ArrayList<>();
+        pedidoService = new PedidoServiceImpl();
 
         loadPedidos();
     }
 
     private void loadPedidos(){
         mPedidos.clear();
-        mPedidos.addAll(PedidoService.getPedidos());
+        mPedidos.addAll(pedidoService.getPedidos());
     }
 
     private List<Pedido> getPedidos(){
@@ -44,7 +46,7 @@ public class ListadoPedidosPresenterImpl implements ListadoPedidosPresenter {
         fecha.set(Calendar.YEAR, year);
 
         mPedidos.clear();
-        List<Pedido> pedidosFiltrados = PedidoService.getPedidos(fecha);
+        List<Pedido> pedidosFiltrados = pedidoService.getPedidos(fecha);
         mPedidos.addAll(pedidosFiltrados);
 
         mView.updateListado();

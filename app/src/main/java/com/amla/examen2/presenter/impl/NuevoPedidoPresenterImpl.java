@@ -1,8 +1,10 @@
 package com.amla.examen2.presenter.impl;
 
 import com.amla.examen2.model.service.ArticuloService;
-import com.amla.examen2.model.service.ClienteService;
 import com.amla.examen2.model.service.PedidoService;
+import com.amla.examen2.model.service.impl.ArticuloServiceImpl;
+import com.amla.examen2.model.service.ClienteService;
+import com.amla.examen2.model.service.impl.PedidoServiceImpl;
 import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.Cliente;
 import com.amla.examen2.presenter.NuevoPedidoPresenter;
@@ -12,11 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
-
     private NuevoPedidoFragment mView;
+    private ArticuloService articuloService;
+    private PedidoService pedidoService;
 
     public NuevoPedidoPresenterImpl(NuevoPedidoFragment view) {
         mView = view;
+        articuloService = new ArticuloServiceImpl();
+        pedidoService = new PedidoServiceImpl();
     }
 
     @Override
@@ -39,7 +44,7 @@ public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
 
         Articulo articulo;
         try{
-            articulo = ArticuloService.getArticulos().get(posicionArticuloSeleccionado);
+            articulo = articuloService.getArticulos().get(posicionArticuloSeleccionado);
         } catch (IndexOutOfBoundsException e) {
             mView.mostrarErrorSinArticulo();
             return;
@@ -61,7 +66,7 @@ public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
         }
 
         try {
-            PedidoService.addPedido(articulo, cliente, cantidad);
+            pedidoService.addPedido(articulo, cliente, cantidad);
         } catch (Exception e) {
             mView.errorAlGuardarPedido();
             return;
@@ -81,7 +86,7 @@ public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
     private List<String> getNombresArticulos(){
         List<String> nombresArticulos = new ArrayList<>();
 
-        for (Articulo articulo : ArticuloService.getArticulos()){
+        for (Articulo articulo : articuloService.getArticulos()){
             nombresArticulos.add(articulo.getNombre());
         }
 

@@ -1,15 +1,18 @@
 package com.amla.examen2.presenter.impl;
 
 import com.amla.examen2.model.service.ArticuloService;
+import com.amla.examen2.model.service.impl.ArticuloServiceImpl;
 import com.amla.examen2.presenter.NuevoArticuloPresenter;
 import com.amla.examen2.views.NuevoArticuloView;
 import com.amla.examen2.views.impl.NuevoArticuloFragment;
 
 public class NuevoArticuloPresenterImpl implements NuevoArticuloPresenter {
     private NuevoArticuloView mView;
+    private ArticuloService articuloService;
 
     public NuevoArticuloPresenterImpl(NuevoArticuloFragment view){
         mView = view;
+        articuloService = new ArticuloServiceImpl();
     }
 
     @Override
@@ -51,7 +54,7 @@ public class NuevoArticuloPresenterImpl implements NuevoArticuloPresenter {
         }
 
         try {
-            ArticuloService.addArticulo(nombre, precio);
+            articuloService.addArticulo(nombre, precio);
         } catch (Exception e) {
             mView.errorAlCrearArticulo();
             return;
