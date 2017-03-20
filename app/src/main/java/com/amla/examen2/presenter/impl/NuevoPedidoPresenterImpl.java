@@ -5,19 +5,20 @@ import com.amla.examen2.model.service.ClienteService;
 import com.amla.examen2.model.service.PedidoService;
 import com.amla.examen2.model.vo.Articulo;
 import com.amla.examen2.model.vo.Cliente;
+import com.amla.examen2.presenter.NuevoPedidoPresenter;
 import com.amla.examen2.views.impl.NuevoPedidoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NuevoPedidoPresenter {
+public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
 
     private NuevoPedidoFragment mView;
     private Articulo articulo;
     private int cantidad;
     private Cliente cliente;
 
-    public NuevoPedidoPresenter(NuevoPedidoFragment view) {
+    public NuevoPedidoPresenterImpl(NuevoPedidoFragment view) {
         mView = view;
     }
 
@@ -70,6 +71,7 @@ public class NuevoPedidoPresenter {
         mView.setCantidad(cantidad);
     }
 
+    @Override
     public List<String> getNombresArticulos(){
         List<String> nombresArticulos = new ArrayList<>();
 
@@ -80,6 +82,7 @@ public class NuevoPedidoPresenter {
         return nombresArticulos;
     }
 
+    @Override
     public List<String> getNombresClientes() {
         List<String> nombresClientes = new ArrayList<>();
 

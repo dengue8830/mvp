@@ -11,9 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amla.examen2.R;
-import com.amla.examen2.presenter.impl.NuevoPedidoPresenter;
+import com.amla.examen2.presenter.NuevoPedidoPresenter;
+import com.amla.examen2.presenter.impl.NuevoPedidoPresenterImpl;
+import com.amla.examen2.views.NuevoPedidoVIew;
 
-public class NuevoPedidoFragment extends Fragment {
+public class NuevoPedidoFragment extends Fragment implements NuevoPedidoVIew{
     private NuevoPedidoPresenter mPresenter;
     private Spinner mArticulo;
     private TextView mCantidad;
@@ -31,7 +33,7 @@ public class NuevoPedidoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new NuevoPedidoPresenter(this);
+        mPresenter = new NuevoPedidoPresenterImpl(this);
     }
 
     @Override
@@ -60,30 +62,37 @@ public class NuevoPedidoFragment extends Fragment {
         return view;
     }
 
+    @Override
     public void setCantidad(int cantidad){
         mCantidad.setText(cantidad == 0 ? "" : cantidad+"");
     }
 
+    @Override
     public void errorAlGuardarPedido() {
         Toast.makeText(getContext(), "Error al guardar el pedido", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void pedidoGuardado() {
         Toast.makeText(getContext(), "Listo!", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorSinArticulo() {
         Toast.makeText(getContext(), "Todas las lineas de pedido deben tener articulo", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorCantidadDebeSerMayorAcero() {
         Toast.makeText(getContext(), "Las cantidades deben ser mayor a cero", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorIngresarCantidad() {
         Toast.makeText(getContext(), "Debes ingresar una cantidad", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorSinCliente() {
         Toast.makeText(getContext(), "Debes elegir un cliente", Toast.LENGTH_LONG).show();
     }

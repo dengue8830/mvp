@@ -1,15 +1,18 @@
 package com.amla.examen2.presenter.impl;
 
 import com.amla.examen2.model.service.ArticuloService;
+import com.amla.examen2.presenter.NuevoArticuloPresenter;
+import com.amla.examen2.views.NuevoArticuloView;
 import com.amla.examen2.views.impl.NuevoArticuloFragment;
 
-public class NuevoArticuloPresenter {
-    private NuevoArticuloFragment mView;
+public class NuevoArticuloPresenterImpl implements NuevoArticuloPresenter {
+    private NuevoArticuloView mView;
 
-    public NuevoArticuloPresenter(NuevoArticuloFragment view){
+    public NuevoArticuloPresenterImpl(NuevoArticuloFragment view){
         mView = view;
     }
 
+    @Override
     public void crearArticulo(String nombre, String stringPrecio){
         if(stringPrecio == null || stringPrecio.isEmpty()){
             mView.mostrarErrorPrecioVacio();

@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.amla.examen2.R;
-import com.amla.examen2.presenter.impl.NuevoClientePresenter;
+import com.amla.examen2.presenter.NuevoClientePresenter;
+import com.amla.examen2.presenter.impl.NuevoClientePresenterImpl;
+import com.amla.examen2.views.NuevoClienteView;
 
-public class NuevoClienteFragment extends Fragment {
+public class NuevoClienteFragment extends Fragment implements NuevoClienteView {
 
     private NuevoClientePresenter mPresenter;
     private EditText etNombre;
@@ -29,7 +31,7 @@ public class NuevoClienteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new NuevoClientePresenter(this);
+        mPresenter = new NuevoClientePresenterImpl(this);
     }
 
     @Override
@@ -47,20 +49,24 @@ public class NuevoClienteFragment extends Fragment {
         return view;
     }
 
+    @Override
     public void errorAlCrearCliente() {
         Toast.makeText(getContext(), "Error al crear el cliente", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void clienteCreado() {
         Toast.makeText(getContext(), "Listo!", Toast.LENGTH_LONG).show();
         etNombre.setText("");
         etDireccion.setText("");
     }
 
+    @Override
     public void mostrarErrorNombreVacio() {
         Toast.makeText(getContext(), "Ingresa un nombre", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorDireccionVacia() {
         Toast.makeText(getContext(), "Ingresa una dirección", Toast.LENGTH_LONG).show();
     }

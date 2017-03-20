@@ -9,9 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.amla.examen2.R;
-import com.amla.examen2.presenter.impl.MainPresenter;
+import com.amla.examen2.presenter.MainPresenter;
+import com.amla.examen2.presenter.impl.MainPresenterImpl;
+import com.amla.examen2.views.MainView;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements MainView{
 
     private BottomNavigationView navigation;
     private MainPresenter mPresenter;
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new MainPresenter(this);
+        mPresenter = new MainPresenterImpl(this);
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,22 +42,25 @@ public class MainActivity extends AppCompatActivity{
         navegarListaPedidos();
     }
 
+    @Override
     public void navegarListaPedidos() {
         setTitle("Lista de pedidos");
         navegarHacia(ListadoPedidosFragment.newInstance());
     }
 
-
+    @Override
     public void navegarNuevoPedido() {
         setTitle("Nuevo pedido");
         navegarHacia(NuevoPedidoFragment.newInstance());
     }
 
+    @Override
     public void navegarNuevoArticulo() {
         setTitle("Nuevo artículo");
         navegarHacia(NuevoArticuloFragment.newInstance());
     }
 
+    @Override
     public void navegarNuevoCliente() {
         setTitle("Nuevo cliente");
         navegarHacia(NuevoClienteFragment.newInstance());

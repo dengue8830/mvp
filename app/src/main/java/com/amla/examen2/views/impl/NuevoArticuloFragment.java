@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.amla.examen2.R;
-import com.amla.examen2.presenter.impl.NuevoArticuloPresenter;
+import com.amla.examen2.presenter.NuevoArticuloPresenter;
+import com.amla.examen2.presenter.impl.NuevoArticuloPresenterImpl;
+import com.amla.examen2.views.NuevoArticuloView;
 
-public class NuevoArticuloFragment extends Fragment {
+public class NuevoArticuloFragment extends Fragment implements NuevoArticuloView {
 
     private NuevoArticuloPresenter mPresenter;
     private EditText etNombre;
@@ -29,7 +31,7 @@ public class NuevoArticuloFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new NuevoArticuloPresenter(this);
+        mPresenter = new NuevoArticuloPresenterImpl(this);
     }
 
     @Override
@@ -47,36 +49,44 @@ public class NuevoArticuloFragment extends Fragment {
         return view;
     }
 
+    @Override
     public void errorAlCrearArticulo() {
         Toast.makeText(getContext(), "Error al crear el artículo", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void articuloCreado() {
         Toast.makeText(getContext(), "Listo!", Toast.LENGTH_LONG).show();
         etNombre.setText("");
         etPrecio.setText("");
     }
 
+    @Override
     public void mostrarErrorNombreVacio() {
         Toast.makeText(getContext(), "Ingresa un nombre", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorPrecioCero() {
         Toast.makeText(getContext(), "No puede ser gratis", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorPrecioNegativo() {
         Toast.makeText(getContext(), "El precio no puede ser negativo", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorPrecioVacio() {
         Toast.makeText(getContext(), "Ingresa un precio", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorPrecioInvalido() {
         Toast.makeText(getContext(), "Ingresa un precio válido", Toast.LENGTH_LONG).show();
     }
 
+    @Override
     public void mostrarErrorSoloDosDecimales() {
         Toast.makeText(getContext(), "El precio no puede tener más de dos decimales", Toast.LENGTH_LONG).show();
     }
