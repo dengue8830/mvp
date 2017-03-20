@@ -15,6 +15,8 @@ import com.amla.examen2.presenter.NuevoPedidoPresenter;
 import com.amla.examen2.presenter.impl.NuevoPedidoPresenterImpl;
 import com.amla.examen2.views.NuevoPedidoVIew;
 
+import java.util.List;
+
 public class NuevoPedidoFragment extends Fragment implements NuevoPedidoVIew{
     private NuevoPedidoPresenter mPresenter;
     private Spinner mArticulo;
@@ -41,15 +43,7 @@ public class NuevoPedidoFragment extends Fragment implements NuevoPedidoVIew{
         View view = inflater.inflate(R.layout.fragment_nuevo_pedido, container, false);
 
         mArticulo = (Spinner) view.findViewById(R.id.spinnerArticulo);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, mPresenter.getNombresArticulos());
-        adapter.setDropDownViewResource(R.layout.layout_spinner_dropdown_primary_item);
-        mArticulo.setAdapter(adapter);
-
         mClientes = (Spinner) view.findViewById(R.id.spinnerCliente);
-        ArrayAdapter<String> adapterClientes = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, mPresenter.getNombresClientes());
-        adapterClientes.setDropDownViewResource(R.layout.layout_spinner_dropdown_primary_item);
-        mClientes.setAdapter(adapterClientes);
-
         mCantidad = (TextView) view.findViewById(R.id.cantidad);
 
         view.findViewById(R.id.btnGuardarPedido).setOnClickListener(new View.OnClickListener() {
@@ -60,6 +54,26 @@ public class NuevoPedidoFragment extends Fragment implements NuevoPedidoVIew{
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    public void setArticulos(List<String> articulos){
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, articulos);
+        adapter.setDropDownViewResource(R.layout.layout_spinner_dropdown_primary_item);
+        mArticulo.setAdapter(adapter);
+    }
+
+    @Override
+    public void setClientes(List<String> clientes){
+        ArrayAdapter<String> adapterClientes = new ArrayAdapter<>(getContext(), R.layout.simple_spinner_item, clientes);
+        adapterClientes.setDropDownViewResource(R.layout.layout_spinner_dropdown_primary_item);
+        mClientes.setAdapter(adapterClientes);
     }
 
     @Override

@@ -14,22 +14,22 @@ import java.util.List;
 public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
 
     private NuevoPedidoFragment mView;
-    private Articulo articulo;
-    private int cantidad;
-    private Cliente cliente;
 
     public NuevoPedidoPresenterImpl(NuevoPedidoFragment view) {
         mView = view;
     }
 
+    @Override
     public void addPedido(int posicionClienteSelecionado, int posicionArticuloSeleccionado, String stringCantidad) {
+        int cantidad;
         try{
-            this.cantidad = Integer.parseInt(stringCantidad);
+            cantidad = Integer.parseInt(stringCantidad);
         } catch (Exception e) {
             mView.mostrarErrorIngresarCantidad();
             return;
         }
 
+        Cliente cliente;
         try{
             cliente = ClienteService.getClientes().get(posicionClienteSelecionado);
         } catch (IndexOutOfBoundsException e) {
@@ -37,6 +37,7 @@ public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
             return;
         }
 
+        Articulo articulo;
         try{
             articulo = ArticuloService.getArticulos().get(posicionArticuloSeleccionado);
         } catch (IndexOutOfBoundsException e) {
@@ -72,7 +73,12 @@ public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
     }
 
     @Override
-    public List<String> getNombresArticulos(){
+    public void onResume() {
+        mView.setArticulos(getNombresArticulos());
+        mView.setClientes(getNombresClientes());
+    }
+
+    private List<String> getNombresArticulos(){
         List<String> nombresArticulos = new ArrayList<>();
 
         for (Articulo articulo : ArticuloService.getArticulos()){
@@ -82,8 +88,7 @@ public class NuevoPedidoPresenterImpl implements NuevoPedidoPresenter {
         return nombresArticulos;
     }
 
-    @Override
-    public List<String> getNombresClientes() {
+    private List<String> getNombresClientes() {
         List<String> nombresClientes = new ArrayList<>();
 
         for (Cliente cliente : ClienteService.getClientes()){
