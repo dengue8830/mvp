@@ -43,7 +43,8 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         private final TextView mCliente;
         private final TextView mDetallePedido;
         private final TextView mLog;
-        ListadoPedidosItemPresenter mPresenter;
+        private final TextView mDireccionCliente;
+        private final ListadoPedidosItemPresenter mPresenter;
 
         ListadoPedidosItemViewHolder(View view) {
             super(view);
@@ -51,6 +52,7 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
             mCliente = (TextView) view.findViewById(R.id.cliente);
             mDetallePedido = (TextView) view.findViewById(R.id.detalle_pedido);
             mLog = (TextView) view.findViewById(R.id.log);
+            mDireccionCliente = (TextView) view.findViewById(R.id.direccion_cliente);
             mPresenter = new ListadoPedidosItemPresenterImpl(this);
         }
 
@@ -72,6 +74,11 @@ public class ListadoPedidosAdapter extends RecyclerView.Adapter<ListadoPedidosAd
         @Override
         public void setLog(String log){
             mLog.setText(log);
+        }
+
+        @Override
+        public void setDireccionCliente(String direccionCliente){
+            mDireccionCliente.setText(direccionCliente);
         }
     }
 }

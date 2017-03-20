@@ -5,4 +5,5 @@ public interface ListadoPedidosItemView {
     void setCliente(String cliente);
     void setDetalle(String detalle);
     void setLog(String log);
+    void setDireccionCliente(String direccionCliente);
 }

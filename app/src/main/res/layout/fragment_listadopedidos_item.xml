@@ -34,6 +34,13 @@
         android:orientation="vertical"
         android:layout_marginLeft="15dp">
         <TextView
+            android:id="@+id/direccion_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textColor="@color/ampm_text_color"/>
+
+        <TextView
             android:id="@+id/detalle_pedido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -16,8 +16,8 @@ public class BD {
     private static List<Articulo> articulos = new ArrayList<>();
 
     static {
-        articulos.add(new Articulo(1, "Coca Cola 1.25lts", 200d));
-        articulos.add(new Articulo(2, "Gatorade 250ml", 1200d));
+        articulos.add(new Articulo(1, "Coca Cola 1.25lts", 20d));
+        articulos.add(new Articulo(2, "Gatorade 250ml", 10d));
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 10);

@@ -21,5 +21,7 @@ public class ListadoPedidosItemPresenterImpl implements ListadoPedidosItemPresen
         mView.setDetalle(pedido.getCantidad()+" x " + pedido.getArticulo().getNombre() + " (c/u $" + pedido.getArticulo().getPrecio()+")");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         mView.setLog(pedido.getEmpleado().getNombre() + " " + pedido.getEmpleado().getApellido()+  " - " + sdf.format(pedido.getFecha().getTime()));
+        mView.setDireccionCliente(pedido.getCliente().getDireccion());
+
     }
 }
